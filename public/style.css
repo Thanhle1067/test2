@@ -1,0 +1,22 @@
+html,body{height:100%;margin:0;background:transparent;overflow:hidden}
+#root{position:relative;width:100vw;height:100vh}
+.counter{position:absolute;left:50%;bottom:14vh;transform:translateX(-50%);font-family:Inter,system-ui,Arial,sans-serif;font-weight:900;font-size:clamp(40px,7vw,84px);color:#fff;text-shadow:0 6px 18px rgba(0,0,0,.65);padding:.2em .5em;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);z-index:20}
+.hidden{display:none}
+.bars.base{position:absolute;inset:0;background:center/cover no-repeat;z-index:10}
+.bars.next{position:absolute;inset:0;background:center/cover no-repeat;transform:translateY(100%);animation:slideUp .8s ease forwards;z-index:12}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes slideInLeft{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+@keyframes slideOutLeft{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.bars.enter{animation:slideInLeft .8s ease forwards}
+.bars.exit{animation:slideOutLeft .8s ease forwards}
+.popup{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);font-family:Inter,system-ui,Arial,sans-serif;font-weight:900;font-size:clamp(36px,6vw,64px);color:#4cff4c;text-shadow:0 0 12px rgba(0,0,0,.6);opacity:0;transition:all .9s ease;pointer-events:none;z-index:30}
+.popup.show{opacity:1;top:28%}.popup.negative{color:#ff5050}
+.bomb,.explosion{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;z-index:40}
+.bomb{top:-140px;width:120px;height:120px;background:url('./bomb.svg') center/contain no-repeat;opacity:0}
+.bomb.fall{animation:fall 1.2s cubic-bezier(.34,1.56,.64,1) forwards;opacity:1}
+@keyframes fall{from{top:-140px}to{top:65vh}}
+.explosion{top:60vh;width:220px;height:220px;background:url('./explosion.svg') center/contain no-repeat;opacity:0}
+.explosion.boom{animation:boom .6s ease-out forwards}
+@keyframes boom{from{opacity:1;transform:translateX(-50%) scale(0.7)}to{opacity:0;transform:translateX(-50%) scale(1.4)}}
+@keyframes bars-shake{0%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}100%{transform:translateX(0)}}
+.bars.shake{animation:bars-shake .6s ease both}
